@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+          <div class="tm-page-col-right tm-tab-contents">
+            <div id="first-tab-group" class="tabgroup">
+              <div id="tab1">
+                <div class="text-content">
+                  {% if libro %}
+                  <h3 class="tm-text-secondary tm-mb-5">
+                        Detalles del libro: "{{ libro.title }}"
+                      </h3>
+                      {% if libro.status == "MEAP" %}
+                        <h4>ESTE LIBRO NO SE HA PUBLICADO.</h4>
+                      {% endif %}
+                      <p class="tm-mb-5">
+                        <img src="{{ libro.thumbnailUrl }}"></img>
+                        {{ libro.shortDescription }}
+                        <br/><br/>
+                        Número de páginas: {{ libro.pageCount }}
+                      </p>
+                      <p>
+                        Autor(es):
+                        <ul>
+                            {% for autor in libro.authors -%}
+                                <li>{{ autor }}</li>
+                            {% endfor -%}
+                        </ul>
+                      </p>
+                      <br/>
+                      <p>
+                        Categorias:
+                        <ul>
+                            {% for cat in libro.categories -%}
+                                <li><a href="/categoria/{{cat}}">{{cat}}</a></li>
+                            {% endfor -%}
+                        </ul>
+                      </p>
+                  {% else %}
+                      <h3 class="tm-text-secondary tm-mb-5">Libro desconocido</h3>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+          <div class="tm-page-col-right tm-tab-contents">
+            <div id="first-tab-group" class="tabgroup">
+              <div id="tab1">
+                <div class="text-content">
+                  <h3 class="tm-text-secondary tm-mb-5">
+                        Libros en la categoria "{{ categoria }}"
+                      </h3>
+                      <p class="tm-mb-5">
+                        <ul>
+                            {% for libro in datos -%}
+                                {% for cat in libro.categories -%}
+                                    {% if cat == categoria %}
+                                        <li><a href="/libro/{{libro.isbn}}">{{libro.title}}</a></li>
+                                    {% endif %}
+                                {% endfor -%}
+                            {% endfor -%}
+                        </ul>
+                      </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock %}
+

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Biblioteca{% endblock %}
+
+{% block content %}
+<section class="row tm-pt-4 tm-pb-6">
+  <div class="col-12 tm-page-cols-container">
+    <div class="tm-page-col-right">
+      <h2 class="tm-text-secondary tm-mb-5">
+      Biblioteca | Programa librería (Python Flask)
+      </h2>
+      <p class="tm-mb-6">
+      <strong>Arantxa Fernández Morató</strong>    
+      </p>
+      <ul class="mb-0">
+          {% for libro in libros %}
+            {% if libro.isbn %}
+              <li><a href="/libro/{{libro.isbn}}">{{libro.title}}</a></li>
+            {% else %}
+              <li><a href="/">{{libro.title}} (No tiene ISBN)</a></li>
+            {% endif %}
+            <br>
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
