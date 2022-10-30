@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+          <div class="tm-page-col-right tm-tab-contents">
+            <div id="first-tab-group" class="tabgroup">
+              <div id="tab1">
+                <div class="text-content">
+                  <h3 class="tm-text-secondary tm-mb-5">
+                     Tablas de la base de datos Maravilla:
+                  </h3>
+                  <ul>
+                    {% for tabla in tablas %}
+                    <li>{{ tabla }}</li>
+                    {% endfor %}
+                  </ul>
+                  <p class="tm-mb-5">
+                    Datos de la tabla "pelicula":
+                  </p>
+                  <ul>
+                    {% for datos in pelicula %}
+                    <li>{{ datos }}</li>
+                    {% endfor %}
+                  </ul>
+                  <br/><br/>
+                  <p class="tm-mb-5">
+                    Datos de la tabla "actor":
+                  </p>
+                  <ul>
+                    {% for datos in actor %}
+                    <li>{{ datos }}</li>
+                    {% endfor %}
+                  </ul>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock %}
+
