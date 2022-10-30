@@ -1,33 +1,38 @@
-from flask import Flask, render_template, abort
+from flask import Flask, flash, redirect, request, session, render_template, abort
 import os
-import json
+import psycopg2
 
 app = Flask (__name__)
 
-f = open("books.json")
-datos = json.load(f)
-f.close()
+conn = psycopg2.connect(
+    host="localhost",
+    database="maravilla",
+    user=os.environ['admin'],
+    password=os.environ['admin'])
 
-categorias = set()
-for libro in datos:
-    categorias.update(libro["categories"])
+
+def marvels():
+   	tablas=db.execute("\dt")
+    pelicula=db.execute("select * from pelicula;")
+    actor=("select * from actor;")
+    return render_template("maravilla.html", tablas=tablas, pelicula=pelicula, actor=actor)
+
 
 @app.route('/',methods=["GET","POST"])
 def index():
-    return render_template("index.html",libros=datos)
+    if not session.get("logged_in"):
+        return render_template("index.html")
+    else:
+        return marvels()
 
-@app.route('/libro/<isbn>',methods=["GET","POST"])
-def libro(isbn):
-    for libro in datos:
-        if "isbn" in libro.keys() and isbn == libro["isbn"]:
-            return render_template("libro.html", libro=libro)
+@app.route('/login', methods=['POST'])
+def login_required():
+    if request.form['password'] == 'admin' and request.form['username'] == 'admin': 
+        session['logged_in'] = True
+    else:
+        flash('wrong password!')
+        return index()
 
-    abort(404)
-
-@app.route('/categoria/<categoria>',)
-def categoria(categoria):
-    if categoria not in categorias:
-        abort(404)
-    return render_template("categoria.html", datos=datos, categoria=categoria)
-
+if __name__ == "__main__":
+    app.secret_key = os.urandom(12)
 app.run('0.0.0.0' ,debug=False)
