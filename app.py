@@ -48,7 +48,7 @@ def index():
 def login_required():
     if request.form['password'] == 'admin' and request.form['username'] == 'admin':
         session['logged_in'] = True
-    return index()
+    return redirect("/")
 
 if __name__ == "__main__":
 #    app.secret_key = os.urandom(12)
