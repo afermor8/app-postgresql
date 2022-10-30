@@ -6,21 +6,32 @@
   <div class="col-12 tm-page-cols-container">
     <div class="tm-page-col-right">
       <h2 class="tm-text-secondary tm-mb-5">
-      Biblioteca | Programa librería (Python Flask)
+      PostgreSQL | Base de datos Maravilla
       </h2>
       <p class="tm-mb-6">
       <strong>Arantxa Fernández Morató</strong>    
       </p>
-      <ul class="mb-0">
-          {% for libro in libros %}
-            {% if libro.isbn %}
-              <li><a href="/libro/{{libro.isbn}}">{{libro.title}}</a></li>
-            {% else %}
-              <li><a href="/">{{libro.title}} (No tiene ISBN)</a></li>
-            {% endif %}
-            <br>
-          {% endfor %}
-      </ul>
+      <main>
+        <div class="circle circle-lime"></div>
+        <form action="" method="get">
+            <h1>Login</h1>
+            <div>
+              <label for="username"></label>
+              <input type="text" name="username" id="username" placeholder="Username (required)" autofocus required>
+            </div>
+             <div>
+              <label for=""></label>
+              <input type="password" name="password" id="password" placeholder="Password (required)" required>
+              <p class="forgot-text"><a href="">Forgot your password?</a></p>
+            </div>
+            <div class="keep-logged-in">
+              <input type="checkbox" value="Go!"></input>
+              <label>Keep me logged in.</label>
+            </div>
+          <input type="submit" value="Go!"></input>
+          </form>
+        <div class="circle circle-aqua"></div>
+      </main>
     </div>
   </div>
 </section>
